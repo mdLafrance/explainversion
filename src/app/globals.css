@@ -11,3 +11,9 @@ svg {
   mask-image: linear-gradient(to top, transparent, black);
   -webkit-mask-image: linear-gradient(to top, transparent, black);
 }
+
+.fade-out-top {
+  mask-image: linear-gradient(to bottom, transparent, black);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+}
+

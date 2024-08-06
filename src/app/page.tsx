@@ -2,7 +2,7 @@
 
 import ConstraintDisplay from "@/components/ConstraintDisplay";
 import Header from "@/components/Header";
-import { Version, VERSION_REGEX } from "@/types";
+import { Version, VERSION_REGEX, VersionPrefix } from "@/types";
 import { IconPackage } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
@@ -22,7 +22,7 @@ export default function Home() {
                 const minor = parseInt(match.groups?.minor ?? "0");
                 const patch = parseInt(match.groups?.patch ?? "0");
                 setVersion({
-                    prefix: match.groups?.prefix ?? "",
+                    prefix: (match.groups?.prefix ?? "") as VersionPrefix,
                     major,
                     minor,
                     patch
@@ -49,7 +49,7 @@ export default function Home() {
             {versionisValid ? "Valid" : "Invalid"}
 
             <p></p>
-            {versionisValid ? <ConstraintDisplay version={version!} /> : null}
+            {versionisValid && version ? <ConstraintDisplay version={version!} /> : null}
         </main>
     );
 }
