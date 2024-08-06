@@ -2,6 +2,7 @@
 
 import ConstraintDisplay from "@/components/ConstraintDisplay";
 import Header from "@/components/Header";
+import VersionTimeline from "@/components/VersionTimeline";
 import { Version, VERSION_REGEX, VersionPrefix } from "@/types";
 import { IconPackage } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
@@ -36,6 +37,7 @@ export default function Home() {
             <label className="input input-bordered flex items-center gap-2">
                 <IconPackage opacity={0.4} />
                 <input
+                    autoFocus
                     type="text"
                     className="grow"
                     placeholder="Version"
@@ -49,7 +51,7 @@ export default function Home() {
             {versionisValid ? "Valid" : "Invalid"}
 
             <p></p>
-            {versionisValid && version ? <ConstraintDisplay version={version!} /> : null}
+            {versionisValid && version ? <VersionTimeline version={version!} /> : null}
         </main>
     );
 }

@@ -83,7 +83,6 @@ function calculateConstraints(version: Version): [VersionConstraint, VersionCons
 }
 
 export default function ConstraintDisplay({ version }: { version: Version }) {
-    console.log("Mounting version:", version)
     const [major, minor, patch] = calculateConstraints(version);
 
     return (

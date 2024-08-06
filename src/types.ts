@@ -16,6 +16,6 @@ export enum VersionPrefix {
 export type Version = {
     prefix: VersionPrefix,
     major: number,
-    minor: number,
-    patch: number
+    minor?: number,
+    patch?: number
 }
