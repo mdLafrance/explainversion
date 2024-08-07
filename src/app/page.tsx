@@ -55,8 +55,8 @@ export default function Home() {
     }, [versionText])
 
     return (
-        <main className="w-screen h-screen bg-surface-100 flex justify-center">
-            <div className="flex flex-col items-center h-full max-w-[35rem] gap-[3rem] p-6">
+        <main className="w-screen h-screen bg-surface-100 flex justify-center overflow-y-scroll">
+            <div className="flex flex-col items-center h-full max-w-[35rem] gap-12  p-12">
                 <Title />
                 <div className="flex justify-between gap-4 items-center w-full h-[2rem]">
                     <VersionInput versionIsValid={versionIsValid} onChange={(e) => {

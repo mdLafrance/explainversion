@@ -3,7 +3,7 @@ import { W } from "vitest/dist/chunks/reporters.C_zwCd4j.js"
 
 function WhatIsThisButton() {
     return (
-        <>
+        <span className="flex items-center">
             <button className={`
                 flex font-aldrich text-primary-600 gap-1 justify-center items-center
                 rounded-lg px-2 py-1 pt-[8px]
@@ -12,10 +12,9 @@ function WhatIsThisButton() {
                 active:bg-primary-600/30
                 transition-all duration-[200ms]
                 text-sm
-                mt-2
             `}
                 onClick={() => {
-                    document.getElementById("about-modal").showModal()
+                    (document.getElementById("about-modal") as any).showModal()
                 }}
             >
                 <IconInfoCircle size={18} className="text-primary-600" />
@@ -33,14 +32,14 @@ function WhatIsThisButton() {
                     </div>
                 </div>
             </dialog>
-        </>
+        </span>
     )
 }
 
 export default function Title() {
     return (
-        <div className="w-full flex flex-col items-center">
-            <h1 className="font-aldrich text-4xl mt-[3rem] font-semibold text-primary-700">
+        <div className="w-full flex justify-between align-center">
+            <h1 className="font-aldrich text-4xl font-semibold text-primary-700">
                 Explain<span className="font-aldrich text-primary-400">Version</span>.com
             </h1>
             <WhatIsThisButton />

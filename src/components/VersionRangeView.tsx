@@ -5,7 +5,7 @@ const versionToString = (versio: Version) => {
     return `${versio.major}.${versio.minor ?? 0}.${versio.patch ?? 0}`
 }
 
-export default function VersionRangeView({ version, versionIsValid }: { version?: Version, versionIsValid: boolean }) {
+export default function VersionRangeView({ version, versionIsValid }: { version: Version | undefined | null, versionIsValid: boolean }) {
 
     var inner: React.ReactNode;
 
@@ -13,25 +13,32 @@ export default function VersionRangeView({ version, versionIsValid }: { version?
         const versionRange = convertVersionToRange(version);
 
         if (versionRange.min === undefined && versionRange.max === undefined) {
-            inner = <>=={versionToString(version)}</>
+            inner = versionToString(version)
         } else if (versionRange.min === undefined) {
-            inner = <>
-                {versionRange.max_is_inclusive ? "<=" : "<"}
-                {versionToString(versionRange.max!)}
-            </>
+            inner = (
+                <>
+                    <span>{versionRange.max_is_inclusive ? "<=" : "<"}</span>
+                    <span>{versionToString(versionRange.max!)}</span>
+                </>
+            )
+
         } else if (versionRange.max === undefined) {
-            inner = <>
-                {versionRange.min_is_inclusive ? ">=" : ">"}
-                {versionToString(versionRange.min!)}
-            </>
+            inner = (
+                <>
+                    <span>{versionRange.min_is_inclusive ? ">=" : ">"}</span>
+                    <span>{versionToString(versionRange.min!)}</span>
+                </>
+            )
         } else {
-            inner = <span>
-                {versionRange.min_is_inclusive ? "≥" : ">"}
-                {versionToString(versionRange.min!)}
-                {", "}
-                {versionRange.max_is_inclusive ? "≤" : "<"}
-                {versionToString(versionRange.max!)}
-            </span>
+            inner = (
+                <>
+                    <span>{versionRange.min_is_inclusive ? ">=" : ">"}</span>
+                    <span>{versionToString(versionRange.min!)}</span>
+                    <pre className="pr-1">{","}</pre>
+                    <span>{versionRange.max_is_inclusive ? "<=" : "<"}</span>
+                    <span>{versionToString(versionRange.max!)}</span>
+                </>
+            )
         }
     } else {
 

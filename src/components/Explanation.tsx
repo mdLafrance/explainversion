@@ -17,7 +17,13 @@ export default function Explanation({ constraint }: { constraint: VersionPrefix 
     if (constraint === "~") {
         explanationText = (
             <p>
-                A <strong>tilde </strong>constraint allows minor-level changes if a major version is specified. If only a minor or patch level version is specified, it allows patch-level changes.
+                A <strong>tilde</strong> constraint is usually used to allow for updates to patch versions.
+                <br />
+                <br />
+                If a minor or patch level version is specified, <strong>only </strong>patch-level changes are allowed.
+                <br />
+                <br />
+                However, if <strong>only </strong>a <strong>major</strong> version is specified, minor-level changes are also accepted.
                 <br />
                 <br />
                 For more information, see <a href="https://www.npmjs.com/package/semver" target="_blank" rel="noreferrer" className="underline decoration-primary-600 text-primary-600">npmjs.com/pakage/semver</a>.
@@ -26,7 +32,7 @@ export default function Explanation({ constraint }: { constraint: VersionPrefix 
     } else if (constraint === "^") {
         explanationText = (
             <p>
-                A caret constraint allows changes that do <strong>not </strong>modify the <strong>left-most </strong>non-zero element in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X >=0.1.0, and no updates for versions 0.0.X.
+                A caret constraint allows changes that do <strong>not </strong>modify the <strong>left-most </strong>non-zero element in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X &gt; 0.1.0, and no updates for versions 0.0.X.
                 <br />
                 <br />
                 For more information, see <a href="https://www.npmjs.com/package/semver" target="_blank" rel="noreferrer" className="underline decoration-primary-600 text-primary-600">npmjs.com/pakage/semver</a>.

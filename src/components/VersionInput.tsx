@@ -24,7 +24,7 @@ export default function VersionInput({versionIsValid, onChange}: { versionIsVali
                     bg-transparent
                     grow-0
                 `}
-                size={14}
+                size={15}
                 placeholder="Version..."
                 onChange={onChange}
             />
