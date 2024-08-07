@@ -1,6 +1,8 @@
 "use client"
 
+import VersionRangeView from "@/components/VersionRangeView";
 import VersionTimeline from "@/components/VersionTimeline";
+import { convertVersionToRange } from "@/lib/conversions";
 import { Version, VERSION_REGEX, VersionPrefix } from "@/types";
 import { IconPackage } from "@tabler/icons-react";
 import React from "react";
@@ -61,7 +63,7 @@ export default function Home() {
             </div>
             <span>=></span>
 
-            {versionIsValid && version ? <VersionTimeline version={version!} /> : null}
+            {versionIsValid && version ? <VersionRangeView version={version!} /> : null}
         </main>
     );
 }
