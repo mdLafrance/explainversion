@@ -19,3 +19,11 @@ export type Version = {
     minor?: number,
     patch?: number
 }
+
+export type VersionRange = {
+    min?: Version,
+    max?: Version,
+    min_is_inclusive?: boolean,
+    max_is_inclusive?: boolean
+}
+

@@ -45,7 +45,7 @@ export default function Home() {
     }, [versionText])
 
     return (
-        <main className="p-4">
+        <main className="p-4 flex gap-4">
             <div className="flex items-center gap-2 ">
                 <IconPackage opacity={0.4} />
                 <input
@@ -59,9 +59,8 @@ export default function Home() {
                     }}
                 />
             </div>
+            <span>=></span>
 
-
-            <p></p>
             {versionIsValid && version ? <VersionTimeline version={version!} /> : null}
         </main>
     );

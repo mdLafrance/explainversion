@@ -1,11 +1,4 @@
-import { Version, VersionPrefix } from "@/types";
-
-export type VersionRange = {
-    min?: Version,
-    max?: Version,
-    min_is_inclusive?: boolean,
-    max_is_inclusive?: boolean
-}
+import { Version, VersionPrefix, VersionRange } from "@/types";
 
 export function versionRangeToString(versionRange: VersionRange): string {
     return `${versionRange.min_is_inclusive ? "INCLUSIVE" : ""} ${versionRange.min?.major}.${versionRange.min?.minor}.${versionRange.min?.patch} - ${versionRange.max_is_inclusive ? "INCLUSIVE" : ""} ${versionRange.max?.prefix}${versionRange.max?.major}.${versionRange.max?.minor}.${versionRange.max?.patch}`
