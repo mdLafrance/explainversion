@@ -1,27 +1,39 @@
 "use client"
 
-import ConstraintDisplay from "@/components/ConstraintDisplay";
-import Header from "@/components/Header";
 import VersionTimeline from "@/components/VersionTimeline";
 import { Version, VERSION_REGEX, VersionPrefix } from "@/types";
 import { IconPackage } from "@tabler/icons-react";
+import React from "react";
 import { useEffect, useState } from "react";
+
+const coerceNumber = (value: string | undefined): number | undefined => {
+    if (value === undefined) {
+        return undefined;
+    }
+
+    const parsed = parseInt(value);
+    if (isNaN(parsed)) {
+        return undefined;
+    }
+
+    return parsed;
+}
 
 export default function Home() {
     const [version, setVersion] = useState<Version | null>(null);
     const [versionText, setVersionText] = useState("");
-    const [versionisValid, setVersionIsValid] = useState(false);
+    const [versionIsValid, setVersionIsValid] = useState(true);
 
     useEffect(() => {
-        if (versionisValid) {
+        if (versionIsValid) {
             const match = VERSION_REGEX.exec(versionText);
 
             console.log(`Match on ${versionText} is ${match}`)
 
             if (match) {
                 const major = parseInt(match.groups?.major!);
-                const minor = parseInt(match.groups?.minor ?? "0");
-                const patch = parseInt(match.groups?.patch ?? "0");
+                const minor = coerceNumber(match.groups?.minor);
+                const patch = coerceNumber(match.groups?.patch);
                 setVersion({
                     prefix: (match.groups?.prefix ?? "") as VersionPrefix,
                     major,
@@ -33,25 +45,24 @@ export default function Home() {
     }, [versionText])
 
     return (
-        <main className="">
-            <label className="input input-bordered flex items-center gap-2">
+        <main className="p-4">
+            <div className="flex items-center gap-2 ">
                 <IconPackage opacity={0.4} />
                 <input
                     autoFocus
                     type="text"
-                    className="grow"
+                    className={`${!versionIsValid ? "text-red-500" : null}`}
                     placeholder="Version"
                     onChange={(e) => {
                         setVersionText(e.target.value)
-                        setVersionIsValid(VERSION_REGEX.test(e.target.value))
+                        setVersionIsValid(e.target.value === "" || VERSION_REGEX.test(e.target.value))
                     }}
                 />
-            </label>
-            <p></p>
-            {versionisValid ? "Valid" : "Invalid"}
+            </div>
+
 
             <p></p>
-            {versionisValid && version ? <VersionTimeline version={version!} /> : null}
+            {versionIsValid && version ? <VersionTimeline version={version!} /> : null}
         </main>
     );
 }

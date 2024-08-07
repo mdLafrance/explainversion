@@ -8,104 +8,137 @@ export type VersionRange = {
 }
 
 export function versionRangeToString(versionRange: VersionRange): string {
-    return `${versionRange.min?.prefix}${versionRange.min?.major}.${versionRange.min?.minor}.${versionRange.min?.patch} - ${versionRange.max?.prefix}${versionRange.max?.major}.${versionRange.max?.minor}.${versionRange.max?.patch}`
+    return `${versionRange.min_is_inclusive ? "INCLUSIVE" : ""} ${versionRange.min?.major}.${versionRange.min?.minor}.${versionRange.min?.patch} - ${versionRange.max_is_inclusive ? "INCLUSIVE" : ""} ${versionRange.max?.prefix}${versionRange.max?.major}.${versionRange.max?.minor}.${versionRange.max?.patch}`
 }
 
 export function convertVersionToRange(version: Version): VersionRange {
-    var mostSignificantNumber: "major" | "minor" | "patch" | null;
 
-    if (version.major !== 0) {
-        mostSignificantNumber = "major";
+    const hasMinor = version.minor !== undefined;
+    const hasPatch = version.patch !== undefined;
+
+    const defaultMin = {
+        prefix: VersionPrefix.None,
+        major: version.major,
+        minor: version.minor,
+        patch: version.patch
     }
-    else if (version.major === 0 && version.minor === undefined) {
-        mostSignificantNumber = "major";
-    }
-    else if (version.minor !== 0) {
-        mostSignificantNumber = "minor";
-    }
-    else if (version.minor === 0 && version.patch === undefined) {
-        mostSignificantNumber = "minor";
-    } else {
-        mostSignificantNumber = "patch";
+
+    const defaultMax = {
+        prefix: VersionPrefix.None,
+        major: version.major,
+        minor: version.minor,
+        patch: version.patch
     }
 
     var versionRange: VersionRange = {};
 
     switch (version.prefix) {
         case VersionPrefix.None:
-            console.log("None")
-            versionRange.min = version
-            versionRange.max = version
+            versionRange.min = undefined
+            versionRange.max = undefined
             versionRange.min_is_inclusive = true
             versionRange.max_is_inclusive = true
             break;
         case VersionPrefix.Equal:
-            versionRange.min = version
-            versionRange.max = version
+            versionRange.min = undefined
+            versionRange.max = undefined
             versionRange.min_is_inclusive = true
             versionRange.max_is_inclusive = true
             break;
         case VersionPrefix.GTE:
-            versionRange.min = version
+            versionRange.min = defaultMin
             versionRange.min_is_inclusive = true
             break;
         case VersionPrefix.LTE:
-            versionRange.max = version
+            versionRange.max = defaultMax
             versionRange.max_is_inclusive = true
             break;
         case VersionPrefix.GT:
-            versionRange.min = version
+            versionRange.min = defaultMin
             versionRange.min_is_inclusive = false
             break;
         case VersionPrefix.LT:
-            versionRange.max = version
+            versionRange.max = defaultMax
             versionRange.max_is_inclusive = false
             break;
         case VersionPrefix.Caret:
-            versionRange.min = version
+            versionRange.min = defaultMin
             versionRange.min_is_inclusive = true
             versionRange.max_is_inclusive = false
 
-            switch (mostSignificantNumber) {
-                case "major":
+            if (version.major === 0) {
+                // Special caret case - ^0.0.3
+                if (hasMinor && version.minor! === 0 && hasPatch) {
+                    versionRange.min = undefined
+                    versionRange.max = undefined
+                    versionRange.min_is_inclusive = true
+                    versionRange.max_is_inclusive = true
+                } else if (hasMinor && hasPatch) {
                     versionRange.max = {
                         prefix: VersionPrefix.None,
-                        major: version.major + 1,
-                        minor: 0,
-                        patch: 0
-                    }
-                    break;
-                case "minor":
-                    versionRange.max = {
-                        prefix: VersionPrefix.None,
-                        major: 0,
+                        major: version.major,
                         minor: version.minor! + 1,
                         patch: 0
                     }
-                    break;
-                case "patch":
+                    // ^0.0
+                } else if (hasMinor && !hasPatch) {
                     versionRange.max = {
                         prefix: VersionPrefix.None,
-                        major: 0,
-                        minor: 0,
-                        patch: (version.patch ?? 0) + 1
+                        major: version.major,
+                        minor: (version.minor ?? 0) + 1,
+                        patch: 0
                     }
-                    break;
+                } else if (!hasMinor && !hasPatch && version.major === 0) {
+                    versionRange.max = {
+                        prefix: VersionPrefix.None,
+                        major: 1,
+                        minor: 0,
+                        patch: 0
+                    }
+                }
+            } else {
+                versionRange.max = {
+                    prefix: VersionPrefix.None,
+                    major: version.major + 1,
+                    minor: 0,
+                    patch: 0
+                }
             }
+
             break;
 
         case VersionPrefix.Tilde:
-            versionRange.min = version
+            versionRange.min = defaultMin
             versionRange.min_is_inclusive = true
             versionRange.max_is_inclusive = false
 
-            versionRange.max = {
-                prefix: VersionPrefix.None,
-                major: version.major,
-                minor: (version.minor ?? 0) + 1,
-                patch: 0
+            if (!hasMinor) {
+                versionRange.max = {
+                    prefix: VersionPrefix.None,
+                    major: version.major + 1,
+                    minor: 0,
+                    patch: 0
+                }
+            } else {
+                versionRange.max = {
+                    prefix: VersionPrefix.None,
+                    major: version.major,
+                    minor: (version.minor ?? 0) + 1,
+                    patch: 0
+                }
             }
+
             break;
+    }
+
+    if (versionRange.min !== undefined) {
+        versionRange.min!.minor = versionRange.min!.minor ?? 0;
+        versionRange.min!.patch = versionRange.min!.patch ?? 0;
+    }
+
+    if (versionRange.max !== undefined) {
+        versionRange.max!.minor = versionRange.max!.minor ?? 0;
+        versionRange.max!.patch = versionRange.max!.patch ?? 0;
     }
 
     return versionRange;
