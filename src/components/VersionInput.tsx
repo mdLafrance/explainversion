@@ -25,7 +25,7 @@ export default function VersionInput({versionIsValid, onChange}: { versionIsVali
                     grow-0
                 `}
                 size={15}
-                placeholder="Version..."
+                placeholder="Enter a version..."
                 onChange={onChange}
             />
         </div>

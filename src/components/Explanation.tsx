@@ -32,7 +32,10 @@ export default function Explanation({ constraint }: { constraint: VersionPrefix 
     } else if (constraint === "^") {
         explanationText = (
             <p>
-                A caret constraint allows changes that do <strong>not </strong>modify the <strong>left-most </strong>non-zero element in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X &gt; 0.1.0, and no updates for versions 0.0.X.
+                A caret constraint allows changes that do <strong>not </strong>modify the <strong>left-most </strong>non-zero element in the [major, minor, patch] tuple. 
+                <br />
+                <br />
+                In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X &gt; 0.1.0, and no updates for versions 0.0.X.
                 <br />
                 <br />
                 For more information, see <a href="https://www.npmjs.com/package/semver" target="_blank" rel="noreferrer" className="underline decoration-primary-600 text-primary-600">npmjs.com/pakage/semver</a>.

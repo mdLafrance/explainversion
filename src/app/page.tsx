@@ -56,7 +56,8 @@ export default function Home() {
 
     return (
         <main className="w-screen h-screen bg-surface-100 flex justify-center overflow-y-scroll">
-            <div className="flex flex-col items-center h-full max-w-[35rem] gap-12  p-12">
+            <div className="flex flex-col items-center h-full max-w-[35rem] gap-12 p-12">
+                <figure className="h-[1dvh]"/>
                 <Title />
                 <div className="flex justify-between gap-4 items-center w-full h-[2rem]">
                     <VersionInput versionIsValid={versionIsValid} onChange={(e) => {

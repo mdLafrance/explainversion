@@ -7,7 +7,7 @@ export default function Footer() {
             opacity-30 hover:opacity-100 transition-opacity duration-200
         `}>
             <IconBolt size={18} style={{ color: '#ba9ffb' }} className="inline" />
-            Made by <a href="https://github.com/mdlafrance" target="_blank" className="underline">Max Lafrance</a>
+            Made by <a href="https://github.com/mdlafrance/explainversion" target="_blank" className="underline">Max Lafrance</a>
 
         </span>
     )
