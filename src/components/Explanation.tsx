@@ -1,6 +1,5 @@
 "use client"
 
-import { CaretExplanation, TildeExplanation } from "@/lib/explanations";
 import { VersionPrefix } from "@/types";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { useState } from "react";
