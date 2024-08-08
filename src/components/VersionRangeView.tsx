@@ -46,12 +46,13 @@ export default function VersionRangeView({ version, versionIsValid }: { version:
 
     return (
         <div className={`
-            w-[15rem] overflow-x-scroll
+            overflow-x-hidden
             font-aldrich text-primary-700/95 rounded-md px-3 py-1 shadow-md
             flex justify-center items-center
-            min-h-[2rem]
             ring-1 ring-surface-300
-            bg-surface-200 ${versionIsValid ? "opacity-100" : "opacity-80"} transition-all duration-[400ms]
+            h-[2rem]
+            w-full
+            ${versionIsValid ? "opacity-100" : "opacity-80"} transition-all duration-[400ms]
         `}>
             {inner}
         </div>

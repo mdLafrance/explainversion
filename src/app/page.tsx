@@ -56,10 +56,11 @@ export default function Home() {
 
     return (
         <main className="w-[100dvw] h-[100dvh] bg-surface-100 flex justify-center overflow-y-scroll">
-            <div className="flex flex-col items-center h-full max-w-[90dvw] sm:max-w-[35rem] gap-12 p-1 sm:p-12">
-                <figure className="sm:h-[1dvh]"/>
+            <div className="flex flex-col items-center justify-stretch h-full max-w-[90dvw] sm:w-[40rem] gap-12 p-1 sm:p-12">
+                <figure className="sm:h-[1dvh] w-full" />
                 <Title />
-                <div className="flex flex-col sm:flex-row justify-between gap-4 items-center w-full sm:h-[2rem]">
+
+                <div className="flex flex-col sm:flex-row justify-between gap-4 items-center w-full">
                     <VersionInput versionIsValid={versionIsValid} onChange={(e) => {
                         setVersionText(e.target.value)
                         setVersionIsValid(e.target.value === "" || VERSION_REGEX.test(e.target.value))
@@ -70,7 +71,6 @@ export default function Home() {
                             size={24}
                             style={{ color: '#ba9ffb' }}
                             opacity={versionIsValid && versionText != "" ? 1 : 0.5}
-                            className="grow-0"
                         />
                     </div>
 
@@ -82,8 +82,8 @@ export default function Home() {
                             className="grow-0"
                         />
                     </div>
-                    <VersionRangeView version={version} versionIsValid={versionIsValid && versionText?.length !== 0} />
 
+                    <VersionRangeView version={version} versionIsValid={versionIsValid && versionText?.length !== 0} />
                 </div>
 
                 {versionText !== "" && versionText[0] === "~" || versionText[0] === "^" ? <Explanation constraint={versionText[0] as VersionPrefix} /> : null}

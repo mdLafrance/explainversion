@@ -1,5 +1,5 @@
 export const VERSION_REGEX = new RegExp(
-    /^v?(?<prefix>(>|<|>=|<=|\^|~)?)(?<major>(\d+|\*))(\.(?<minor>(\d+|\*)))?(\.(?<patch>(\d+|\*)))?$/
+    /^v?(?<prefix>(>|<|>=|<=|\^|~)?)(?<major>\d+)(\.(?<minor>\d+))?(\.(?<patch>\d+))?$/
 )
 
 export enum VersionPrefix {

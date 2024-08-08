@@ -3,6 +3,8 @@ import { IconPackage } from "@tabler/icons-react"
 export default function VersionInput({versionIsValid, onChange}: { versionIsValid: boolean, onChange: (e: any) => void }) {
     return (
         <div className={`
+            h-[2rem]
+            w-full
             flex items-center gap-2
             px-[10px] py-[5px]
             ring-[1.2px] rounded-md ring-surface-300
@@ -22,9 +24,8 @@ export default function VersionInput({versionIsValid, onChange}: { versionIsVali
                     font-aldrich align-bottom
                     focus:outline-none
                     bg-transparent
-                    grow-0
+                    w-full
                 `}
-                size={15}
                 placeholder="Enter a version..."
                 onChange={onChange}
             />
