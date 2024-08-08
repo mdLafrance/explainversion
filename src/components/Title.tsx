@@ -5,7 +5,7 @@ import { PiRobotLight } from "react-icons/pi"
 function AboutModal() {
     return <dialog id="about-modal" className="modal">
         <div className="modal-box bg-surface-200 text-white ring-2 ring-primary-500/50">
-            <h3 className="text-xl">
+            <h3 className="text-xl underline decoration-white/50">
                 Welcome to <strong className="font-aldrich">ExplainVersion</strong>
             </h3>
             <p className="py-4">
@@ -14,7 +14,23 @@ function AboutModal() {
                 <br />
                 This website can help you sanity check your semver versioning. Enter a version to see what range it decompses into.
             </p>
-            <p className="flex flex-col items-center pt-3 text-primary-600 transition-all duration-200">
+            <h3 className="text-xl underline decoration-white/50">
+                Limitations
+            </h3>
+            <p>
+                Currently only the following semver versioning schemes are supported, as they are the most confusing:
+            </p>
+            <br />
+            <ul>
+                <li>- Tilde</li>
+                <li>- Caret</li>
+            </ul>
+
+            <br />
+            <p>
+                If you'd like to see support for other versioning schemes, please consider opening an issue on the github page.
+            </p>
+            <p className="flex flex-col items-center pt-3 text-primary-600 transition-all duration-200 mt-6">
                 Have you found this tool helpful?
                 <br />
                 <span className="flex gap-1 items-center">
