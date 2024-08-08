@@ -28,7 +28,7 @@ function AboutModal() {
 
             <br />
             <p>
-                If you'd like to see support for other versioning schemes, please consider opening an issue on the github page.
+                If you&apos;d like to see support for other versioning schemes, please consider opening an issue on the github page.
             </p>
             <p className="flex flex-col items-center pt-3 text-primary-600 transition-all duration-200 mt-6">
                 Have you found this tool helpful?
