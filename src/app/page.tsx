@@ -8,7 +8,7 @@ import VersionRangeView from "@/components/VersionRangeView";
 import VersionTimeline from "@/components/VersionTimeline";
 import { convertVersionToRange } from "@/lib/conversions";
 import { Version, VERSION_REGEX, VersionPrefix } from "@/types";
-import { IconArrowNarrowRight, IconArrowRight, IconPackage } from "@tabler/icons-react";
+import { IconArrowNarrowDown, IconArrowNarrowRight, IconArrowRight, IconPackage } from "@tabler/icons-react";
 import React from "react";
 import { useEffect, useState } from "react";
 
@@ -55,18 +55,27 @@ export default function Home() {
     }, [versionText])
 
     return (
-        <main className="w-screen h-screen bg-surface-100 flex justify-center overflow-y-scroll">
-            <div className="flex flex-col items-center h-full max-w-[35rem] gap-12 p-12">
-                <figure className="h-[1dvh]"/>
+        <main className="w-[100dvw] h-[100dvh] bg-surface-100 flex justify-center overflow-y-scroll">
+            <div className="flex flex-col items-center h-full max-w-[90dvw] sm:max-w-[35rem] gap-12 p-1 sm:p-12">
+                <figure className="sm:h-[1dvh]"/>
                 <Title />
-                <div className="flex justify-between gap-4 items-center w-full h-[2rem]">
+                <div className="flex flex-col sm:flex-row justify-between gap-4 items-center w-full sm:h-[2rem]">
                     <VersionInput versionIsValid={versionIsValid} onChange={(e) => {
                         setVersionText(e.target.value)
                         setVersionIsValid(e.target.value === "" || VERSION_REGEX.test(e.target.value))
                     }} />
 
-                    <div className="grow-0">
+                    <div className="grow-0 hidden sm:block">
                         <IconArrowNarrowRight
+                            size={24}
+                            style={{ color: '#ba9ffb' }}
+                            opacity={versionIsValid && versionText != "" ? 1 : 0.5}
+                            className="grow-0"
+                        />
+                    </div>
+
+                    <div className="grow-0 sm:hidden">
+                        <IconArrowNarrowDown
                             size={24}
                             style={{ color: '#ba9ffb' }}
                             opacity={versionIsValid && versionText != "" ? 1 : 0.5}

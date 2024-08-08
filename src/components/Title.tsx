@@ -33,10 +33,10 @@ function AboutModal() {
             <p className="flex flex-col items-center pt-3 text-primary-600 transition-all duration-200 mt-6">
                 Have you found this tool helpful?
                 <br />
-                <span className="flex gap-1 items-center">
+                <span className="flex flex-wrap gap-1 items-center">
                     Consider giving it a star on
                     <span className="flex items-center gap-1 text-primary-600 pl-1">
-                        <FaStar style={{ color: '#ba9ffb' }} />
+                        <FaStar style={{ color: '#ba9ffb' }} className="hidden sm:inline" />
                         <a href="https://github.com/mdlafrance/explainversion" target="_blank" className="underline">github</a>
                     </span>
                 </span>
@@ -85,8 +85,8 @@ function AboutButton() {
 
 export default function Title() {
     return (
-        <div className="w-full flex justify-between align-center">
-            <h1 className="font-aldrich text-4xl font-semibold text-primary-700">
+        <div className="w-full flex flex-col items-center gap-2 sm:flex-row sm:justify-between sm:align-center">
+            <h1 className="font-aldrich text-2xl sm:text-4xl font-semibold text-primary-700">
                 Explain<span className="font-aldrich text-primary-400">Version</span>.com
             </h1>
             <AboutButton />
