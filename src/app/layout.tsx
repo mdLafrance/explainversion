@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Poppins, Aldrich } from "next/font/google";
-import { ThemeContextProvider } from "@/context/ThemeContext";
 
 import "./globals.css";
 import { explainVersionMetadata } from "@/lib/metadata";
@@ -35,9 +34,7 @@ export default function RootLayout({
                 <link rel="icon" type="image/png" sizes="any" href="/favicon.png" />
             </head>
             <body className={`${inter.variable} ${poppins.variable} ${aldrich.variable}`} >
-                <ThemeContextProvider>
-                    {children}
-                </ThemeContextProvider>
+                {children}
             </body>
         </html >
     );

@@ -5,7 +5,6 @@ export function versionRangeToString(versionRange: VersionRange): string {
 }
 
 export function convertVersionToRange(version: Version): VersionRange {
-
     const hasMinor = version.minor !== undefined;
     const hasPatch = version.patch !== undefined;
 
@@ -25,6 +24,8 @@ export function convertVersionToRange(version: Version): VersionRange {
 
     var versionRange: VersionRange = {};
 
+    // Am i proud of this function? no
+    // Does it work fine? yes
     switch (version.prefix) {
         case VersionPrefix.None:
             versionRange.min = undefined

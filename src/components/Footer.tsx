@@ -1,4 +1,4 @@
-import { IconBolt, IconHeart } from "@tabler/icons-react";
+import { IconBolt } from "@tabler/icons-react";
 
 export default function Footer() {
     return (

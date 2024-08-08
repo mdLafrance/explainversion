@@ -6,14 +6,3 @@ svg {
     shape-rendering: geometricPrecision;
     text-rendering: geometricPrecision;
 }
-
-.fade-out-bottom {
-  mask-image: linear-gradient(to top, transparent, black);
-  -webkit-mask-image: linear-gradient(to top, transparent, black);
-}
-
-.fade-out-top {
-  mask-image: linear-gradient(to bottom, transparent, black);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black);
-}
-

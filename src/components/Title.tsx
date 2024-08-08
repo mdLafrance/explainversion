@@ -1,6 +1,5 @@
 import { IconInfoCircle } from "@tabler/icons-react"
-import { FaGithub, FaStar } from "react-icons/fa"
-import { PiRobotLight } from "react-icons/pi"
+import { FaStar } from "react-icons/fa"
 
 function AboutModal() {
     return <dialog id="about-modal" className="modal">

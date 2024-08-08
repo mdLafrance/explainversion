@@ -5,10 +5,8 @@ import Footer from "@/components/Footer";
 import Title from "@/components/Title";
 import VersionInput from "@/components/VersionInput";
 import VersionRangeView from "@/components/VersionRangeView";
-import VersionTimeline from "@/components/VersionTimeline";
-import { convertVersionToRange } from "@/lib/conversions";
 import { Version, VERSION_REGEX, VersionPrefix } from "@/types";
-import { IconArrowNarrowDown, IconArrowNarrowRight, IconArrowRight, IconPackage } from "@tabler/icons-react";
+import { IconArrowNarrowDown, IconArrowNarrowRight } from "@tabler/icons-react";
 import React from "react";
 import { useEffect, useState } from "react";
 
@@ -18,6 +16,7 @@ const coerceNumber = (value: string | undefined): number | undefined => {
     }
 
     const parsed = parseInt(value);
+
     if (isNaN(parsed)) {
         return undefined;
     }
@@ -34,8 +33,6 @@ export default function Home() {
         if (versionIsValid) {
             const match = VERSION_REGEX.exec(versionText);
 
-            console.log(`Match on ${versionText} is ${match}`)
-
             if (match) {
                 const major = parseInt(match.groups?.major!);
                 const minor = coerceNumber(match.groups?.minor);
@@ -48,8 +45,6 @@ export default function Home() {
                 })
             }
         } else {
-            console.log("Invalid version!: Version is:", version)
-
             setVersion(null)
         }
     }, [versionText])

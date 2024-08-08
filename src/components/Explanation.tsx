@@ -1,8 +1,5 @@
-"use client"
-
 import { VersionPrefix } from "@/types";
 import { IconInfoCircle } from "@tabler/icons-react";
-import { useState } from "react";
 
 const tildeExplanation = (
     <p>
@@ -32,12 +29,6 @@ const caretExplanation = (
 )
 
 export default function Explanation({ constraint }: { constraint: VersionPrefix }) {
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    const toggleExpand = () => {
-        setIsExpanded(!isExpanded);
-    }
-
     var explanationText: React.ReactNode
 
     if (constraint === "~") {

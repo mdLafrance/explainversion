@@ -1,5 +1,5 @@
 import { convertVersionToRange } from "@/lib/conversions";
-import { Version, VersionRange } from "@/types";
+import { Version } from "@/types";
 
 const versionToString = (versio: Version) => {
     return `${versio.major}.${versio.minor ?? 0}.${versio.patch ?? 0}`
