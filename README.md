@@ -8,4 +8,5 @@ Not all versioning schemes have been implemented yet. The list of currently supp
 - [X] Caret
 - [X] Tilde
 - [ ] Prerelease/build postfix
+- [ ] Support for other versioning schemes (like some extra that are available with pip)
 - [ ] Range based
